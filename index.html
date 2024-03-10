@@ -95,6 +95,7 @@
     </article>
   </template>
 
+  <script type="module" src="/main.js"></script>
   <script>
     function dropdownInEvent(index) {
       document.querySelector(`.dropdown-${index}`).classList.remove('hidden');
@@ -109,10 +110,9 @@
     //   console.log('Edit button clicked')
     // }
     function removeButtonEvent(index) {
-      console.log('Remove button clicked')
+      window.location.href = `./?remove=${index}`;
     }
   </script>
-  <script type="module" src="/main.js"></script>
 </body>
 
 </html>

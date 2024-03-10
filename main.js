@@ -6,6 +6,11 @@ let currentUserId = 1;
 let lastPostIndex;
 
 window.onload = () => {
+
+  if (window.location.href.includes('remove')) {
+    removePost(window.location.href.split('remove=')[1]);
+  };
+
   document.querySelector('.profile-container img').addEventListener('click', () => {
     userChangeEvent();
   });
@@ -43,7 +48,7 @@ function postComment(userId, content) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      id: ++lastPostIndex,
+      id: `${++lastPostIndex}`,
       userId: userId,
       content: content,
       timestamp: new Date().toISOString()
@@ -113,7 +118,7 @@ function displayPosts() {
       templateClone.querySelector('.dropdown-button').setAttribute('onclick', `dropdownInEvent(${i})`);
       templateClone.querySelector('.dropdown-button').setAttribute('onblur', `dropdownOutEvent(${i})`);
       // templateClone.querySelector('.edit-button').setAttribute('onclick', `editButtonEvent(${i})`);
-      templateClone.querySelector('.remove-button').setAttribute('onclick', `removeButtonEvent(${i})`);
+      templateClone.querySelector('.remove-button').setAttribute('onclick', `removeButtonEvent(${post.id})`);
       templateClone.querySelector('#dropdown').classList.add(`dropdown-${i}`);
       document.querySelector('.posts').appendChild(templateClone);
     } else {
@@ -141,4 +146,16 @@ function userChangeEvent() {
 
 function textAreaPlaceholder() {
   document.querySelector('.post-form textarea').setAttribute('placeholder', `What's on your mind, ${users[currentUserId - 1].name.split(' ')[1]}?`);
+}
+
+function removePost(postId) {
+  fetch(`http://localhost:3000/posts/${postId}`, {
+    method: 'DELETE'
+  }).then(res => {
+    console.log(`Response: ${res.status} ${res.statusText}`);
+    return res.json();
+  }).then(data => {
+    posts.splice(postId, 1);
+    window.location.href = '/';
+  })
 }
