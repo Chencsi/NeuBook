@@ -1,0 +1,66 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "Chen Kevin",
+            "email": "chen.kevin@njszg.hu",
+            "image": "/ckevin.jpg"
+        },
+        {
+            "id": 2,
+            "name": "Hunor Vadoba",
+            "email": "vadoba.hunor.gergely@njszg.hu",
+            "image": "/vhunor.jpg"
+        },
+        {
+            "id": 3,
+            "name": "Tömő Viktor",
+            "email": "tomo.viktor@njszg.hu",
+            "image": "/tviktor.jpg"
+        }
+    ],
+    "posts": [
+        {
+            "id": 101,
+            "userId": 1,
+            "content": "Boldog nőnapot kívánok minden kedves hölgynek!",
+            "timestamp": "2024-03-08T12:00:00Z"
+        },
+        {
+            "id": 102,
+            "userId": 2,
+            "content": "Ma eláztam a iskolába menet, mert nem volt nálam esernyő.",
+            "timestamp": "2024-03-01T14:15:00Z"
+        },
+        {
+            "id": 103,
+            "userId": 1,
+            "content": "A JSON adatok kezelése nagyon egyszerű, csak meg kell érteni a működését.",
+            "timestamp": "2024-03-07T10:30:00Z"
+        },
+        {
+            "id": 104,
+            "userId": 3,
+            "content": "Programozás órán tanultunk a C#-ról. Nagyon érdekes volt!",
+            "timestamp": "2024-02-28T16:00:00Z"
+        },
+        {
+            "id": 105,
+            "userId": 2,
+            "content": "Ma a szüleim elvittek vásárolni, és megkaptam a hónap eleji zsebpénzem.",
+            "timestamp": "2024-01-10T18:00:00Z"
+        },
+        {
+            "id": 106,
+            "userId": 3,
+            "content": "A mai nap folyamán a tanárok elmondták, hogy a következő héten lesz egy iskolai kirándulás.",
+            "timestamp": "2024-01-01T12:00:00Z"
+        },
+        {
+            "id": 107,
+            "userId": 2,
+            "content": "Ez az utolsó nyaram. Szeretnék valami emlékezeteset csinálni.",
+            "timestamp": "2024-03-09T14:00:00Z"
+        }
+    ]
+}

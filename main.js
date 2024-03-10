@@ -1,7 +1,12 @@
 import './src/output.css'
 
-let posts = [];
-let users = [];
+let posts;
+let users;
+let currentUserId = 1;
+
+document.querySelector('.profile-container img').addEventListener('click', () => {
+  userChangeEvent();
+});
 
 fetch('http://localhost:3000/posts', {
     method: 'GET',
@@ -27,6 +32,11 @@ function getUsers() {
     return res.json();
   }).then(data => {
     users = data;
+    for (let user of users) {
+      if (user.id == currentUserId) {
+        document.querySelector('.profile-container img').src = user.image;
+      }
+    }
     document.querySelector('.comment-count').innerText = posts.length;
     sortPosts();
   })
@@ -54,7 +64,7 @@ function displayPosts() {
     templateClone.querySelector('.dropdown-button').setAttribute('onclick', `dropdownInEvent(${i})`);
     templateClone.querySelector('.dropdown-button').setAttribute('onblur', `dropdownOutEvent(${i})`);
     templateClone.querySelector('.edit-button').setAttribute('onclick', `editButtonEvent(${i})`);
-    templateClone.querySelector('.remove-button').setAttribute('onclick', `removeButttonEvent(${i})`);
+    templateClone.querySelector('.remove-button').setAttribute('onclick', `removeButtonEvent(${i})`);
     templateClone.querySelector('#dropdown').classList.add(`dropdown-${i}`);
     document.querySelector('.posts').appendChild(templateClone);
   } else {
@@ -62,4 +72,20 @@ function displayPosts() {
   }
     i++;
   }
+}
+
+function userChangeEvent() {
+  switch (currentUserId) {
+    case 1:
+      currentUserId = 2;
+      break;
+    case 2:
+      currentUserId = 3;
+      break;
+    case 3:
+      currentUserId = 1;
+      break;
+  }
+  console.log(currentUserId);
+  document.querySelector('.profile-container img').src = users[currentUserId - 1].image;
 }
