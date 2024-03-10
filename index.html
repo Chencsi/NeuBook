@@ -73,11 +73,11 @@
           <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconHorizontalButton">
             <li>
               <a href="#"
-                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
+                class="edit-button block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
             </li>
             <li>
               <a href="#"
-                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Remove</a>
+                class="remove-button block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Remove</a>
             </li>
           </ul>
         </div>
@@ -98,6 +98,12 @@
     }
     function dropdownOutEvent(index) {
       document.querySelector(`.dropdown-${index}`).classList.add('hidden');
+    }
+    function editButtonEvent(index) {
+      alert('Edit button clicked'); 
+    }
+    function removeButtonEvent(index) {
+      alert('Remove button clicked');
     }
   </script>
 </body>

@@ -1,8 +1,7 @@
 import './src/output.css'
 
-let posts = []
-let users = []
-
+let posts = [];
+let users = [];
 
 fetch('http://localhost:3000/posts', {
     method: 'GET',
@@ -10,11 +9,11 @@ fetch('http://localhost:3000/posts', {
         'Accept': 'application/json'
     }
 }).then(res => {
-    console.log(`Response: ${res.status} ${res.statusText}`)
-    return res.json()      
+    console.log(`Response: ${res.status} ${res.statusText}`);
+    return res.json();      
 }).then(data => {
-    posts = data
-    getUsers()
+    posts = data;
+    getUsers();
 })
 
 function getUsers() {
@@ -24,10 +23,10 @@ function getUsers() {
       'Accept': 'application/json'
     }
   }).then(res => {
-    console.log(`Response: ${res.status} ${res.statusText}`)
-    return res.json()
+    console.log(`Response: ${res.status} ${res.statusText}`);
+    return res.json();
   }).then(data => {
-    users = data
+    users = data;
     document.querySelector('.comment-count').innerText = posts.length;
     sortPosts();
   })
@@ -44,7 +43,9 @@ function displayPosts() {
   let template = document.querySelector('template');
   let i = 0;
   for (let post of posts) {
-    let user = users.find(user => user.id === post.userId);
+    let user = users.find(user => user.id == post.userId);
+
+  if(user) {
     let templateClone = template.content.cloneNode(true);
     templateClone.querySelector('.post-author').textContent = user.name;
     templateClone.querySelector('.post-content').textContent = post.content;
@@ -52,8 +53,13 @@ function displayPosts() {
     templateClone.querySelector('.post-time').textContent = new Intl.DateTimeFormat('hu-HU', { dateStyle: 'full' }).format(new Date(post.timestamp));
     templateClone.querySelector('.dropdown-button').setAttribute('onclick', `dropdownInEvent(${i})`);
     templateClone.querySelector('.dropdown-button').setAttribute('onblur', `dropdownOutEvent(${i})`);
+    templateClone.querySelector('.edit-button').setAttribute('onclick', `editButtonEvent(${i})`);
+    templateClone.querySelector('.remove-button').setAttribute('onclick', `removeButttonEvent(${i})`);
     templateClone.querySelector('#dropdown').classList.add(`dropdown-${i}`);
     document.querySelector('.posts').appendChild(templateClone);
+  } else {
+    console.log(`User not found for post with id ${post.id} and userId ${post.userId}`);
+  }
     i++;
   }
 }
